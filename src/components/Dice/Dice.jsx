@@ -9,24 +9,25 @@ import Dice6 from './dice-6.png';
 
 import './Dice.css'
 const Dice = ({value}) => {
+    console.log(value)
     let Dice;
     switch(value){
-        case "1":
+        case 1:
             Dice = Dice1;
             break;
-        case "2":
+        case 2:
             Dice = Dice2;
             break;
-        case "3":
+        case 3:
             Dice = Dice3;
             break;
-        case "4":
+        case 4:
             Dice = Dice4;
             break;
-        case "5":
+        case 5:
             Dice = Dice5;
             break;
-        case "6":
+        case 6:
             Dice = Dice6;
             break;
         default:

@@ -1,9 +1,15 @@
 .dice {
-  width: 200px;
-  margin: 20px auto;
+  width: 400px;
+  margin: 4rem auto 20px auto;
   text-align: center;
 }
 .dice img {
   width: 90%;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 550px) {
+  .dice {
+    width: 90%;
+  }
 }

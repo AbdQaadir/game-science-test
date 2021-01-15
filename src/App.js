@@ -10,18 +10,15 @@ const possibility = [1, 2, 3, 4, 5, 6];
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [diceData, setDiceData] = useState([]);
+  const [dice, setDice] = useState("");
 
   const fetchDice = () => {
-    setDiceData([]);
+    setDice("");
     setLoading(true);
-    fetch("https://rolz.org/api/?6d6.json")
+    fetch("https://rolz.org/api/?1d6.json")
       .then((res) => res.json())
       .then((data) => {
-        const dices = data.details
-          .split("")
-          .filter((item) => possibility.includes(+item));
-        setDiceData(dices);
+        setDice(data.result);
         setLoading(false);
         setError("");
       })
@@ -33,15 +30,12 @@ const App = () => {
   };
   return (
     <div className="container">
-      <Button fetchDice={fetchDice} title="Roll Dice" />
       <div id="dice-wrapper">
-        <p>{loading && !error ? "Rolling...." : ""}</p>
+        <p className="loading">{loading && !error ? "Rolling...." : ""}</p>
         <p className="error">{error && !loading ? error : ""}</p>
-
-        {diceData?.map((dice, idx) => (
-          <Dice value={dice} key={idx} />
-        ))}
+        {dice ? <Dice value={dice} /> : <></>}
       </div>
+      <Button fetchDice={fetchDice} title="Roll Dice" />
     </div>
   );
 };
