@@ -1,9 +1,11 @@
 #roll-dice {
   text-align: center;
   font-size: 18px;
-  padding: 9px 35px;
-  background: #11698e;
-  color: #e0e0e0;
+  padding: 11px 45px;
+  background: #ed0303;
+  color: #fff;
+  border-radius: 5px;
   cursor: pointer;
+  border: none;
   margin: 20px auto;
 }

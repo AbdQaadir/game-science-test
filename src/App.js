@@ -23,15 +23,21 @@ const App = () => {
           .filter((item) => possibility.includes(+item));
         setDiceData(dices);
         setLoading(false);
+        setError("");
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        console.log(err.message);
+        setError(err.message);
+        setLoading(false);
+      });
   };
   return (
     <div className="container">
       <Button fetchDice={fetchDice} title="Roll Dice" />
       <div id="dice-wrapper">
-        <p>{loading ? "Rolling...." : ""}</p>
-        <p className="error">{error}</p>
+        <p>{loading && !error ? "Rolling...." : ""}</p>
+        <p className="error">{error && !loading ? error : ""}</p>
+
         {diceData?.map((dice, idx) => (
           <Dice value={dice} key={idx} />
         ))}
