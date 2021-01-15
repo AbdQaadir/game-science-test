@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
-function App() {
+import Button from "./components/Button/Button";
+
+import Dice from "./components/Dice/Dice";
+
+const possibility = [1, 2, 3, 4, 5, 6];
+const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [diceData, setDiceData] = useState([]);
+
+  const fetchDice = () => {
+    setDiceData([]);
+    setLoading(true);
+    fetch("https://rolz.org/api/?6d6.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const dices = data.details
+          .split("")
+          .filter((item) => possibility.includes(+item));
+        setDiceData(dices);
+        setLoading(false);
+      })
+      .catch((err) => setError(err.message));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Button fetchDice={fetchDice} title="Roll Dice" />
+      <div id="dice-wrapper">
+        <p>{loading ? "Rolling...." : ""}</p>
+        <p>{error}</p>
+        {diceData?.map((dice, idx) => (
+          <Dice value={dice} key={idx} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
