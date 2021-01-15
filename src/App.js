@@ -6,6 +6,7 @@ import Button from "./components/Button/Button";
 import Dice from "./components/Dice/Dice";
 
 const possibility = [1, 2, 3, 4, 5, 6];
+
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,7 +31,7 @@ const App = () => {
       <Button fetchDice={fetchDice} title="Roll Dice" />
       <div id="dice-wrapper">
         <p>{loading ? "Rolling...." : ""}</p>
-        <p>{error}</p>
+        <p className="error">{error}</p>
         {diceData?.map((dice, idx) => (
           <Dice value={dice} key={idx} />
         ))}

@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { shallow } from "enzyme";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+  it("error text should be present and empty", () => {
+    const errorText = wrapper.find(".error").text();
+    expect(errorText).toBe("");
+  });
 });
