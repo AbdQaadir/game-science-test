@@ -5,8 +5,6 @@ import Button from "./components/Button/Button";
 import Dice from "./components/Dice/Dice";
 import Loading from './loading.svg'
 
-const possibility = [1, 2, 3, 4, 5, 6];
-
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,7 +31,7 @@ const App = () => {
       <div id="dice-wrapper">
 
         {loading && !error ? <img src={Loading} alt="Loading"/> : <></>}
-        
+
         {error && !loading ? <p className="error">{error}</p> : <></>}
         
         {dice ? <Dice value={dice} /> : <></>}
