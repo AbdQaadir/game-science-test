@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./App.css";
 
 import Button from "./components/Button/Button";
-
 import Dice from "./components/Dice/Dice";
+import Loading from './loading.svg'
 
 const possibility = [1, 2, 3, 4, 5, 6];
 
@@ -31,8 +31,11 @@ const App = () => {
   return (
     <div className="container">
       <div id="dice-wrapper">
-        <p className="loading">{loading && !error ? "Rolling...." : ""}</p>
-        <p className="error">{error && !loading ? error : ""}</p>
+
+        {loading && !error ? <img src={Loading} alt="Loading"/> : <></>}
+        
+        {error && !loading ? <p className="error">{error}</p> : <></>}
+        
         {dice ? <Dice value={dice} /> : <></>}
       </div>
       <Button fetchDice={fetchDice} title="Roll Dice" />
