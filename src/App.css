@@ -1,14 +1,14 @@
 .container {
   width: 90vw;
   margin: 0 auto;
-  padding: 20px 10px;
+  padding: 40px 10px;
   text-align: center;
 }
 #dice-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
-  min-height: 550px;
+  min-height: 440px;
   justify-content: center;
   flex-wrap: wrap;
   color: #fff;
@@ -16,4 +16,11 @@
 .loading,
 .error {
   font-size: 40px;
+}
+
+
+@media  screen and (max-width: 500px){
+  #dice-wrapper {
+    min-height: 340px;
+  }
 }
