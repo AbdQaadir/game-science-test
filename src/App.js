@@ -3,7 +3,7 @@ import "./App.css";
 
 import Button from "./components/Button/Button";
 import Dice from "./components/Dice/Dice";
-import Loading from './loading.svg'
+import Loading from "./loading.svg";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -29,11 +29,10 @@ const App = () => {
   return (
     <div className="container">
       <div id="dice-wrapper">
-
-        {loading && !error ? <img src={Loading} alt="Loading"/> : <></>}
+        {loading && !error ? <img src={Loading} alt="Loading" /> : <></>}
 
         {error && !loading ? <p className="error">{error}</p> : <></>}
-        
+
         {dice ? <Dice value={dice} /> : <></>}
       </div>
       <Button fetchDice={fetchDice} title="Roll Dice" />
